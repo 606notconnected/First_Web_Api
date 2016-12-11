@@ -722,6 +722,13 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="M:First_Web_Api.Controllers.User_FindController.Post(First_Web_Api.Models.FindUser)">
+            <summary>
+            查找用户
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="T:First_Web_Api.Models.ImageModel">
             <summary>
             上传图片Model
@@ -934,12 +941,7 @@
         </member>
         <member name="P:First_Web_Api.Models.FindUser.account">
             <summary>
-            帐号
-            </summary>
-        </member>
-        <member name="P:First_Web_Api.Models.FindUser.userName">
-            <summary>
-            用户名
+            帐号或者用户名
             </summary>
         </member>
         <member name="T:First_Web_Api.Models.ReturnFindUser">

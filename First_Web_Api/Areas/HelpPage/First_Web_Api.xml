@@ -722,6 +722,43 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="M:First_Web_Api.Controllers.User_FindController.Post(First_Web_Api.Models.FindUser)">
+            <summary>
+            查找用户
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:First_Web_Api.Models.Follower">
+            <summary>
+            关注
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.Follower.FollowerAccount">
+            <summary>
+            关注者
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.Follower.WasFollowederAccount">
+            <summary>
+            被关注者
+            </summary>
+        </member>
+        <member name="T:First_Web_Api.Models.ReturnMyFollow">
+            <summary>
+            返回我的关注
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.ReturnMyFollow.result">
+            <summary>
+            返回结果
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.ReturnMyFollow.userList">
+            <summary>
+            返回用户列表
+            </summary>
+        </member>
         <member name="T:First_Web_Api.Models.ImageModel">
             <summary>
             上传图片Model
