@@ -34,8 +34,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>Areas\HelpPage\First_Web_Api.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>GlobalizationRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,6 +44,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>App_Data\First_Web_Api.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -213,6 +214,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClickLikeController.cs" />
+    <Compile Include="Controllers\ClickLike_DeleteController.cs" />
     <Compile Include="Controllers\FollowerController.cs" />
     <Compile Include="Controllers\Follower_DeleteController.cs" />
     <Compile Include="Controllers\ForgetPasswordController.cs" />
@@ -220,13 +222,14 @@
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ImageMessageController.cs" />
     <Compile Include="Controllers\Image_DeleteController.cs" />
+    <Compile Include="Controllers\Image_Delete_CancelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MysqlConnent.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\RoadController.cs" />
     <Compile Include="Controllers\SignController.cs" />
     <Compile Include="Controllers\UserMessageController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\User_FindController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -243,6 +246,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\HelpPage\First_Web_Api.xml" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

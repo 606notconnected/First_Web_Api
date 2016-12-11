@@ -11,29 +11,31 @@ using System.Text;
 
 namespace First_Web_Api.Controllers
 {
-    public class Follower_DeleteController : ApiController
+    /// <summary>
+    /// 取消假删除
+    /// </summary>
+    public class Image_Delete_CancelController : ApiController
     {
-        MysqlConnent MyConnent = new MysqlConnent();
 
-
-        // POST: api/Follower_Delete
+        MysqlConnent myConnent = new MysqlConnent();
+        // POST: api/Image_Delete_Cancel
         /// <summary>
-        /// 取消关注
+        /// 取消假删除
         /// </summary>
         /// <param name="value"></param>
-        /// <returns></returns>
-        public string Post([FromBody]Follower value)
+        public string Post([FromBody]DeleteImageModel value)
         {
             try
             {
-                MyConnent.MySqlWrite("DELETE FROM 关注表 WHERE FollowerAccount ='" + value.FollowerAccount + "' AND WasFollowederAccount = '" + value.WasFollowederAccount + "'");
+                myConnent.MySqlWrite("UPDATE 图片表 SET IsDelete = '" + 0 + "' WHERE ImageName = '" + value.imageName + "'");
                 return "true";
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.ToString());
-                return "false";
+                return "error";
             }
+
         }
 
     }

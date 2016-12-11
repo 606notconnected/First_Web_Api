@@ -52,8 +52,8 @@ namespace First_Web_Api.Controllers
             {
                 con.Dispose();
                 con.Close();
-                Console.WriteLine(12);
-                Console.WriteLine(e.ToString());
+                Debug.WriteLine(12);
+                Debug.WriteLine(e.ToString());
                 return false;
             }
 
@@ -125,8 +125,8 @@ namespace First_Web_Api.Controllers
             {
                 con.Dispose();
                 con.Close();
-                Console.WriteLine(14);
-                Console.WriteLine(e.ToString());
+                Debug.WriteLine(14);
+                Debug.WriteLine(e.ToString());
                 return 0;
             }
         }
@@ -170,8 +170,8 @@ namespace First_Web_Api.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(19);
-                Console.WriteLine(e.ToString());
+                Debug.WriteLine(19);
+                Debug.WriteLine(e.ToString());
                 con.Dispose();
                 con.Close();
 
@@ -221,10 +221,10 @@ namespace First_Web_Api.Controllers
                 }
 
             }
-            catch (Exception e)
+            catch (MySqlException e)
             {
-                Console.WriteLine(19);
-                Console.WriteLine(e.ToString());
+                Debug.WriteLine(19);
+                Debug.WriteLine(e.ToString());
                 con.Dispose();
                 con.Close();
                 returnList.Add("error");
@@ -278,8 +278,8 @@ namespace First_Web_Api.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(19);
-                Console.WriteLine(e.ToString());
+                Debug.WriteLine(19);
+                Debug.WriteLine(e.ToString());
                 con.Dispose();
                 con.Close();
                 returnList[0]["error"] = "error";
@@ -316,8 +316,8 @@ namespace First_Web_Api.Controllers
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(20);
-                    Console.WriteLine(e.ToString());
+                    Debug.WriteLine(20);
+                    Debug.WriteLine(e.ToString());
                 }
             }
             return bitmap;

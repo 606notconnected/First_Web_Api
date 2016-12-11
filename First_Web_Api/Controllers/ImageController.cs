@@ -89,7 +89,7 @@ namespace First_Web_Api.Controllers
                 imageName = fileName[0].Substring(fileName[0].Length - 45, 45);
                 Debug.WriteLine(imageName);
                 string account = dic["Account"];
-                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + account + "','" + DateTime.Now.ToString("yyyyMMddHHmmss")+ "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "')");
+                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + account + "','" + DateTime.Now.ToString("yyyyMMddHHmmss")+ "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "0" + "')");
                // myConnent.MySqlHasRows("SELECT * FROM 路径表() ")
 
 
@@ -188,7 +188,12 @@ namespace First_Web_Api.Controllers
 
    
 
-
+        /// <summary>
+        /// 对图片进行压缩
+        /// </summary>
+        /// <param name="sourcefullname"></param>
+        /// <param name="dispMaxWidth"></param>
+        /// <param name="dispMaxHeight"></param>
         public void Save(string sourcefullname, int dispMaxWidth, int dispMaxHeight)
         {
             try
@@ -248,22 +253,4 @@ namespace First_Web_Api.Controllers
 
 }
 
-    public class CustomMultipartFormDataStreamProvider : MultipartFormDataStreamProvider
-    {
-        public CustomMultipartFormDataStreamProvider(string path)
-          : base(path)
-        { }
-
-        public override string GetLocalFileName(System.Net.Http.Headers.HttpContentHeaders headers)
-        {
-            string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            return fileName + "_" + headers.ContentDisposition.FileName.Replace("\"", string.Empty);//base.GetLocalFileName(headers);
-        }
-    }
-
-    public class CompressPic
-    {
-       
-
-
-}
+   

@@ -11,22 +11,24 @@ using System.Text;
 
 namespace First_Web_Api.Controllers
 {
-    public class Follower_DeleteController : ApiController
+    public class ClickLike_DeleteController : ApiController
     {
         MysqlConnent MyConnent = new MysqlConnent();
 
-
-        // POST: api/Follower_Delete
+        // GET: api/ClickLike/5
         /// <summary>
-        /// 取消关注
+        /// 取消点赞
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="imageName"></param>
         /// <returns></returns>
-        public string Post([FromBody]Follower value)
+        public string Get(string imageName)
         {
             try
             {
-                MyConnent.MySqlWrite("DELETE FROM 关注表 WHERE FollowerAccount ='" + value.FollowerAccount + "' AND WasFollowederAccount = '" + value.WasFollowederAccount + "'");
+                string ClickLikeCount = MyConnent.MySqlReadReturn("SELECT * FROM 图片表 WHERE ImageName ='" + imageName + "'", "ClickLikeCount");
+                int NewCount = int.Parse(ClickLikeCount);
+                NewCount--;
+                MyConnent.MySqlWrite("UPDATE 图片表 SET ClickLikeCount ='" + NewCount + "' WHERE ImageName ='" + imageName + "'");
                 return "true";
             }
             catch (Exception e)

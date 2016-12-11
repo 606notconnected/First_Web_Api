@@ -1,39 +1,42 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using First_Web_Api.Models;
+using System.IO;
+using System.Text;
+
 
 namespace First_Web_Api.Controllers
 {
     public class ClickLikeController : ApiController
     {
-        // GET: api/ClickLike
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        MysqlConnent MyConnent = new MysqlConnent();
 
         // GET: api/ClickLike/5
-        public string Get(int id)
+        /// <summary>
+        /// 点赞
+        /// </summary>
+        /// <param name="imageName"></param>
+        /// <returns></returns>
+        public string Get(string imageName)
         {
-            return "value";
-        }
-
-        // POST: api/ClickLike
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/ClickLike/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/ClickLike/5
-        public void Delete(int id)
-        {
+            try
+            {
+                string ClickLikeCount = MyConnent.MySqlReadReturn("SELECT * FROM 图片表 WHERE ImageName ='"+ imageName + "'","ClickLikeCount");
+                int NewCount = int.Parse(ClickLikeCount);
+                NewCount++;
+                MyConnent.MySqlWrite("UPDATE 图片表 SET ClickLikeCount ='" + NewCount + "' WHERE ImageName ='" + imageName + "'");
+                return "true";
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                return "false";
+            }
         }
     }
 }
