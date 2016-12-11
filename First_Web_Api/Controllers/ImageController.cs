@@ -79,7 +79,8 @@ namespace First_Web_Api.Controllers
                 {//接收文件
                     Trace.WriteLine(file.Headers.ContentDisposition.FileName);//获取上传文件实际的文件名
                     Trace.WriteLine("Server file path: " + file.LocalFileName);//获取上传文件在服务上默认的文件名
-                    Save(file.LocalFileName, 769, 1280);
+                    await Task.Delay(1000);
+                    Save(file.LocalFileName, 77, 130);
                     fileName.Add(file.LocalFileName);
                 }//TODO:这样做直接就将文件存到了指定目录下，暂时不知道如何实现只接收文件数据流但并不保存至服务器的目录下，由开发自行指定如何存储，比如通过服务存到图片服务器
                 foreach (var key in provider.FormData.AllKeys)
@@ -194,7 +195,7 @@ namespace First_Web_Api.Controllers
         /// <param name="sourcefullname"></param>
         /// <param name="dispMaxWidth"></param>
         /// <param name="dispMaxHeight"></param>
-        public void Save(string sourcefullname, int dispMaxWidth, int dispMaxHeight)
+        public async void Save(string sourcefullname, int dispMaxWidth, int dispMaxHeight)
         {
             try
             {
@@ -210,6 +211,7 @@ namespace First_Web_Api.Controllers
             }
             //Path.Combine(output, Path.GetFileName(sourcefullname))
         }
+
         Bitmap ResizeImage(Bitmap mg, Size newSize)
         {
             double ratio = 0d;

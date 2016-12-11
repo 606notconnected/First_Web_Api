@@ -53,7 +53,7 @@ namespace First_Web_Api.Controllers
             ReturnImageNameModel returnModel = new ReturnImageNameModel();
             try
             {
-                List<string> imageNameList = myConnent.MySqlRead("SELECT * FROM 图片表 WHERE Account ='" + account + "' ORDER BY DateTime DESC", "imageName");
+                List<string> imageNameList = myConnent.MySqlRead("SELECT * FROM 图片表 WHERE Account ='" + account + "' AND IsDelete = '0' ORDER BY DateTime DESC", "imageName");
                 if (imageNameList[0] != "error")
                 {
                     returnModel.result = "true";

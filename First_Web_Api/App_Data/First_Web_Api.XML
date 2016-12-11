@@ -502,6 +502,26 @@
             <param name="imageName"></param>
             <returns></returns>
         </member>
+        <member name="M:First_Web_Api.Controllers.CommentController.Get(System.String)">
+            <summary>
+            通过图片id获取评论
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:First_Web_Api.Controllers.CommentController.Post(First_Web_Api.Models.CommentModel)">
+            <summary>
+            添加评论
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:First_Web_Api.Controllers.FollowerController.Get(System.String)">
+            <summary>
+            获取已关注的人的列表
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
         <member name="M:First_Web_Api.Controllers.FollowerController.Post(First_Web_Api.Models.Follower)">
             <summary>
             关注
@@ -729,6 +749,36 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="T:First_Web_Api.Models.Follower">
+            <summary>
+            关注
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.Follower.FollowerAccount">
+            <summary>
+            关注者
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.Follower.WasFollowederAccount">
+            <summary>
+            被关注者
+            </summary>
+        </member>
+        <member name="T:First_Web_Api.Models.ReturnMyFollow">
+            <summary>
+            返回我的关注
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.ReturnMyFollow.result">
+            <summary>
+            返回结果
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.ReturnMyFollow.userList">
+            <summary>
+            返回用户列表
+            </summary>
+        </member>
         <member name="T:First_Web_Api.Models.ImageModel">
             <summary>
             上传图片Model
@@ -832,6 +882,71 @@
         <member name="P:First_Web_Api.Models.ReturnImageMessageModel.introduction">
             <summary>
             图片简介
+            </summary>
+        </member>
+        <member name="T:First_Web_Api.Models.CommentModel">
+            <summary>
+            评论
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentModel.account">
+            <summary>
+            评论账号
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentModel.comment">
+            <summary>
+            评论内容
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentModel.imageName">
+            <summary>
+            评价图片ID
+            </summary>
+        </member>
+        <member name="T:First_Web_Api.Models.CommentBackModel">
+            <summary>
+            返回评论
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentBackModel.commentID">
+            <summary>
+            评论ID
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentBackModel.account">
+            <summary>
+            评论账号
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentBackModel.comment">
+            <summary>
+            评论内容
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentBackModel.imageName">
+            <summary>
+            评价图片名
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentBackModel.dateTime">
+            <summary>
+            评论时间
+            </summary>
+        </member>
+        <member name="T:First_Web_Api.Models.CommentBackListModel">
+            <summary>
+            返回评论列表
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentBackListModel.result">
+            <summary>
+            结果
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.CommentBackListModel.commentBackList">
+            <summary>
+            返回用户列表
             </summary>
         </member>
         <member name="T:First_Web_Api.Models.Sign">

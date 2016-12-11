@@ -114,4 +114,78 @@ namespace First_Web_Api.Models
         /// </summary>
         public string introduction{get; set;}
     }
+
+    /// <summary>
+    /// 评论
+    /// </summary>
+    public class CommentModel
+    {
+        /// <summary>
+        /// 评论账号
+        /// </summary>
+        public string account { get; set; }
+
+        /// <summary>
+        /// 评论内容
+        /// </summary>
+        public string comment { get; set; }
+
+        /// <summary>
+        /// 评价图片ID
+        /// </summary>
+        public string imageName { get; set; }
+    }
+
+    /// <summary>
+    /// 返回评论
+    /// </summary>
+    public class CommentBackModel
+    {
+        /// <summary>
+        /// 评论ID
+        /// </summary>
+        public string commentID { get; set; }
+
+        /// <summary>
+        /// 评论账号
+        /// </summary>
+        public string account { get; set; }
+
+        /// <summary>
+        /// 评论内容
+        /// </summary>
+        public string comment { get; set; }
+
+        /// <summary>
+        /// 评价图片名
+        /// </summary>
+        public string imageName { get; set; }
+
+        /// <summary>
+        /// 评论时间
+        /// </summary>
+        public string dateTime { get; set; }
+
+      
+    }
+
+    /// <summary>
+    /// 返回评论列表
+    /// </summary>
+    public class CommentBackListModel
+    {
+        /// <summary>
+        /// 结果
+        /// </summary>
+        public string result { get; set; }
+
+        /// <summary>
+        /// 返回用户列表
+        /// </summary>
+        public List<CommentBackModel> commentBackList { get; set; }
+
+
+
+    }
+
 }
