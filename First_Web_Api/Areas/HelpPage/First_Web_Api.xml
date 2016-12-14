@@ -550,6 +550,13 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="M:First_Web_Api.Controllers.ImageController.GetImage(System.String)">
+            <summary>
+            返回原图
+            </summary>
+            <param name="imagename"></param>
+            <returns></returns>
+        </member>
         <member name="M:First_Web_Api.Controllers.ImageController.Post">
             <summary>
             接收图片
@@ -608,6 +615,26 @@
             取消假删除
             </summary>
             <param name="value"></param>
+        </member>
+        <member name="M:First_Web_Api.Controllers.Image_HeadController.Get(System.String)">
+            <summary>
+            获取Account对应的头像名
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:First_Web_Api.Controllers.Image_HeadController.Post">
+            <summary>
+            上传头像
+            </summary>
+        </member>
+        <member name="M:First_Web_Api.Controllers.Image_HeadController.Save(System.String,System.Int32,System.Int32)">
+            <summary>
+            对图片进行压缩
+            </summary>
+            <param name="sourcefullname"></param>
+            <param name="dispMaxWidth"></param>
+            <param name="dispMaxHeight"></param>
         </member>
         <member name="M:First_Web_Api.Controllers.LoginController.PostLogin(First_Web_Api.Models.Login)">
             <summary>

@@ -51,7 +51,7 @@ namespace First_Web_Api.Controllers
         {
             try
             {
-                myConnent.MySqlWrite("INSERT INTO 账号表() VALUES('" + value.account + "','" + value.password + "','" + value.username + "','" + "暂无" + "','" + "这个人很懒，什么都没留下" + "','" + "1" + "')");
+                myConnent.MySqlWrite("INSERT INTO 账号表() VALUES('" + value.account + "','" + value.password + "','" + value.username + "','" + "暂无" + "','" + "这个人很懒，什么都没留下" + "','" + "1" + "','" + "head" + "')");
                 return "true";
             }
             catch (Exception e)

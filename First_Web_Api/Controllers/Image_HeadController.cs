@@ -16,81 +16,51 @@ using First_Web_Api.Models;
 using System.Web.Hosting;
 using System.Text;
 
-
 namespace First_Web_Api.Controllers
 {
-    public class ImageController : ApiController
+    public class Image_HeadController : ApiController
     {
-        
+
+        MysqlConnent myConnent = new MysqlConnent();
+        // GET: api/Image_Head/5
         /// <summary>
-        /// 返回图片
+        /// 获取Account对应的头像名
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="account"></param>
         /// <returns></returns>
-        public HttpResponseMessage Get(string name)
+        public ReturnImageNameModel Get(string account)
         {
+           
+
+            ReturnImageNameModel returnModel = new ReturnImageNameModel();
             try
             {
-                string root = HttpContext.Current.Server.MapPath("~/Image/" + name + ".jpg");
-                //从图片中读取byte
-                var imgByte = File.ReadAllBytes(root);
-                //从图片中读取流
-                var imgStream = new MemoryStream(File.ReadAllBytes(root));
-                var resp = new HttpResponseMessage(HttpStatusCode.OK)
+                List<string> imageNameList = myConnent.MySqlRead("SELECT * FROM 账号表 WHERE Account ='" + account + "'", "HeadImageName");
+                if (imageNameList[0] != "error")
                 {
-                    Content = new ByteArrayContent(imgByte)
-                    //或者
-                    //Content = new StreamContent(stream)
-                };
-                resp.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
-                return resp;
-            }
-            catch(Exception e)
-            {
-                Debug.WriteLine(e.ToString());
-                return null;
-            }
-        }
-
-
-        /// <summary>
-        /// 返回原图
-        /// </summary>
-        /// <param name="imagename"></param>
-        /// <returns></returns>
-        [System.Web.Mvc.Route("api/image/tmp")]
-        public HttpResponseMessage GetImage(string imagename)
-        {
-            try
-            {
-                string root = HttpContext.Current.Server.MapPath("~/Image/" + imagename);
-                //从图片中读取byte
-                var imgByte = File.ReadAllBytes(root);
-                //从图片中读取流
-                var imgStream = new MemoryStream(File.ReadAllBytes(root));
-                var resp = new HttpResponseMessage(HttpStatusCode.OK)
+                    returnModel.result = "true";
+                    returnModel.imageName = imageNameList;
+                    return returnModel;
+                }
+                else
                 {
-                    Content = new ByteArrayContent(imgByte)
-                    //或者
-                    //Content = new StreamContent(stream)
-                };
-                resp.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
-                return resp;
+                    returnModel.result = "error";
+                    return returnModel;
+                }
+
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.ToString());
-                return null;
+                returnModel.result = "error";
+                return returnModel;
             }
         }
 
 
-
-      
         /// <summary>
-        /// 接收图片
+        /// 上传头像
         /// </summary>
-        /// <returns></returns>
         public async Task<string> Post()
         {
             string imageName;
@@ -103,7 +73,7 @@ namespace First_Web_Api.Controllers
             Dictionary<string, string> dic = new Dictionary<string, string>();
             string root = HttpContext.Current.Server.MapPath("~/Image");//指定要将文件存入的服务器物理位置
             Debug.WriteLine(root);
-            if(!Directory.Exists(root))
+            if (!Directory.Exists(root))
             {
                 Directory.CreateDirectory(root);
             }
@@ -131,9 +101,9 @@ namespace First_Web_Api.Controllers
                 imageName = fileName[0].Substring(fileName[0].Length - 45, 45);
                 Debug.WriteLine(imageName);
                 string account = dic["Account"];
-                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + account + "','" + DateTime.Now.ToString("yyyyMMddHHmmss")+ "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "0" + "')");
-               // myConnent.MySqlHasRows("SELECT * FROM 路径表() ")
-
+                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + account + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "0" + "')");
+                // myConnent.MySqlHasRows("SELECT * FROM 路径表() ")
+                myConnent.MySqlWrite("UPDATE 账号表 SET HeadImageName = '" + imageName + "' WHERE Account = '" + account + "'");
 
 
             }
@@ -141,95 +111,11 @@ namespace First_Web_Api.Controllers
             {
                 throw;
             }
-          
+
             return imageName;
         }
 
 
-        
-
-
-
-        /* public async Task<HttpResponseMessage> Post()  
-         {
-
-             Debug.WriteLine("QAQ");
-             // Check whether the POST operation is MultiPart?  
-             if (!Request.Content.IsMimeMultipartContent())  
-             {
-                 Debug.WriteLine(200);
-                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);  
-             }  
-
-             // Prepare CustomMultipartFormDataStreamProvider in which our multipart form  
-             // data will be loaded.  
-             string fileSaveLocation = HttpContext.Current.Server.MapPath("~/App_Data");  
-             CustomMultipartFormDataStreamProvider provider = new CustomMultipartFormDataStreamProvider(fileSaveLocation);  
-             List<string> files = new List<string>();  
-
-             try  
-             {  
-                 // Read all contents of multipart message into CustomMultipartFormDataStreamProvider.  
-                 await Request.Content.ReadAsMultipartAsync(provider);  
-
-                 foreach (MultipartFileData file in provider.FileData)  
-                 {  
-                     files.Add(Path.GetFileName(file.LocalFileName));
-                     Debug.WriteLine(2333);
-                 }  
-
-                 // Send OK Response along with saved file names to the client.  
-                 return Request.CreateResponse(HttpStatusCode.OK, files);  
-
-             }  
-             catch (System.Exception e)  
-             {
-                 Debug.WriteLine(6666);
-                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);  
-             }  
-         }  */
-
-
-
-
-        // POST: api/Image
-        /*public ResultModel Post([FromBody]ImageModel value)
-        {
-            ResultModel result = new ResultModel();
-            try
-            {
-
-                if (value.FileData != null && value.FileData.Length > 0)
-                {
-                    result.Result = "yes";
-
-                    using (FileStream tmpfs = File.Create(@"C:/travel_pictrue/2333.jpg"))
-                    {
-                        tmpfs.Write(value.FileData, 0, value.FileData.Length);
-                        tmpfs.Flush();
-                        tmpfs.Close();
-                    }
-                }
-                result.Result = "true";
-                result.Message = "null";
-                return result;
-
-            }
-            catch(Exception e)
-            {
-                result.Result = "false";
-                result.Message = e.ToString();
-                return result;
-            }
-       
-
-        }
-        */
-
-
-
-
-   
 
         /// <summary>
         /// 对图片进行压缩
@@ -247,7 +133,7 @@ namespace First_Web_Api.Controllers
                 if (bp != null)
                     bp.Save(sourcefullname + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.WriteLine(e.ToString());
             }
@@ -284,7 +170,7 @@ namespace First_Web_Api.Controllers
                 Rectangle rect = new Rectangle(x, y, thumbSize.Width, thumbSize.Height);
                 g.DrawImage(mg, rect, 0, 0, mg.Width, mg.Height, GraphicsUnit.Pixel);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.WriteLine(e.ToString());
             }
@@ -292,9 +178,6 @@ namespace First_Web_Api.Controllers
             return bp;
 
         }
+
     }
-
-
 }
-
-   

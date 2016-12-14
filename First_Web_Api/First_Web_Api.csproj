@@ -224,6 +224,7 @@
     <Compile Include="Controllers\ImageMessageController.cs" />
     <Compile Include="Controllers\Image_DeleteController.cs" />
     <Compile Include="Controllers\Image_Delete_CancelController.cs" />
+    <Compile Include="Controllers\Image_HeadController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MysqlConnent.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
