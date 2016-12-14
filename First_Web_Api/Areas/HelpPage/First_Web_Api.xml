@@ -881,6 +881,21 @@
             返回图片名
             </summary>
         </member>
+        <member name="T:First_Web_Api.Models.ReturnHeadImageNameModel">
+            <summary>
+            返回头像图片名
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.ReturnHeadImageNameModel.result">
+            <summary>
+            返回结果
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.ReturnHeadImageNameModel.headimageName">
+            <summary>
+            返回头像图片名
+            </summary>
+        </member>
         <member name="T:First_Web_Api.Models.ReturnImageMessageModel">
             <summary>
             返回图片信息

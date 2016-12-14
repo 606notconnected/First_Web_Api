@@ -28,18 +28,18 @@ namespace First_Web_Api.Controllers
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public ReturnImageNameModel Get(string account)
+        public ReturnHeadImageNameModel Get(string account)
         {
-           
 
-            ReturnImageNameModel returnModel = new ReturnImageNameModel();
+
+            ReturnHeadImageNameModel returnModel = new ReturnHeadImageNameModel();
             try
             {
-                List<string> imageNameList = myConnent.MySqlRead("SELECT * FROM 账号表 WHERE Account ='" + account + "'", "HeadImageName");
-                if (imageNameList[0] != "error")
+                string imageNameList = myConnent.MySqlReadReturn("SELECT * FROM 账号表 WHERE Account ='" + account + "'", "HeadImageName");
+                if (imageNameList!= "error")
                 {
                     returnModel.result = "true";
-                    returnModel.imageName = imageNameList;
+                    returnModel.headimageName = imageNameList;
                     return returnModel;
                 }
                 else
@@ -101,7 +101,7 @@ namespace First_Web_Api.Controllers
                 imageName = fileName[0].Substring(fileName[0].Length - 45, 45);
                 Debug.WriteLine(imageName);
                 string account = dic["Account"];
-                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + account + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "0" + "')");
+                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + "head" + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "0" + "')");
                 // myConnent.MySqlHasRows("SELECT * FROM 路径表() ")
                 myConnent.MySqlWrite("UPDATE 账号表 SET HeadImageName = '" + imageName + "' WHERE Account = '" + account + "'");
 

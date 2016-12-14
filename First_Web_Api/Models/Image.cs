@@ -87,6 +87,23 @@ namespace First_Web_Api.Models
     }
 
     /// <summary>
+    /// 返回头像图片名
+    /// </summary>
+    public class ReturnHeadImageNameModel
+    {
+        /// <summary>
+        /// 返回结果
+        /// </summary>
+        public string result { get; set; }
+
+        /// <summary>
+        /// 返回头像图片名
+        /// </summary>
+        public string headimageName { get; set; }
+    }
+
+
+    /// <summary>
     /// 返回图片信息
     /// </summary>
     public class ReturnImageMessageModel
