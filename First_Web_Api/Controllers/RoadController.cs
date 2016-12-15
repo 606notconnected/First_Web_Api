@@ -67,6 +67,28 @@ namespace First_Web_Api.Controllers
             }
 
         }
+        /// <summary>
+        /// 通过账号获取最近一条行程信息
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public ReturnFinalRoad GetFinalRoadName(string getAccount)
+        {
+            ReturnFinalRoad tmpRoad = new ReturnFinalRoad();
+            try
+            {
+                tmpRoad.roadID = myConnent.MySqlReadReturn("SELECT * FROM 路径表 WHERE Account ='" + getAccount + "' ORDER BY EndTime DESC LIMIT 0,1","RoadID");
+                return tmpRoad;
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                tmpRoad.roadID = "error";
+                return tmpRoad;
+
+
+            }
+        }
 
         // POST: api/Road
         /// <summary>

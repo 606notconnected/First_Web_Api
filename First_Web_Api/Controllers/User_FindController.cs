@@ -14,17 +14,6 @@ namespace First_Web_Api.Controllers
 
         MysqlConnent myConnent = new MysqlConnent();
 
-        // GET: api/User_Find
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/User_Find/5
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST: api/User_Find
         /// <summary>

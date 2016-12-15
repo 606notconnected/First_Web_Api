@@ -495,6 +495,13 @@
             <param name="imageName"></param>
             <returns></returns>
         </member>
+        <member name="M:First_Web_Api.Controllers.ClickLikeController.GetLikeCount(System.String)">
+            <summary>
+            通过图片名返回赞数
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
         <member name="M:First_Web_Api.Controllers.ClickLike_DeleteController.Get(System.String)">
             <summary>
             取消点赞
@@ -727,6 +734,13 @@
             通过帐号获取行程信息
             </summary>
             <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:First_Web_Api.Controllers.RoadController.GetFinalRoadName(System.String)">
+            <summary>
+            通过账号获取最近一条行程信息
+            </summary>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:First_Web_Api.Controllers.RoadController.Post(First_Web_Api.Models.Road)">

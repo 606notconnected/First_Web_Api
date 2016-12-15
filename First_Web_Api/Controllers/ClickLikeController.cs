@@ -14,7 +14,7 @@ namespace First_Web_Api.Controllers
 {
     public class ClickLikeController : ApiController
     {
-        MysqlConnent MyConnent = new MysqlConnent();
+        MysqlConnent myConnent = new MysqlConnent();
 
         // GET: api/ClickLike/5
         /// <summary>
@@ -26,16 +26,37 @@ namespace First_Web_Api.Controllers
         {
             try
             {
-                string ClickLikeCount = MyConnent.MySqlReadReturn("SELECT * FROM 图片表 WHERE ImageName ='"+ imageName + "'","ClickLikeCount");
+                string ClickLikeCount = myConnent.MySqlReadReturn("SELECT * FROM 图片表 WHERE ImageName ='"+ imageName + "'","ClickLikeCount");
                 int NewCount = int.Parse(ClickLikeCount);
                 NewCount++;
-                MyConnent.MySqlWrite("UPDATE 图片表 SET ClickLikeCount ='" + NewCount + "' WHERE ImageName ='" + imageName + "'");
+                myConnent.MySqlWrite("UPDATE 图片表 SET ClickLikeCount ='" + NewCount + "' WHERE ImageName ='" + imageName + "'");
                 return "true";
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.ToString());
                 return "false";
+            }
+        }
+
+        /// <summary>
+        /// 通过图片名返回赞数
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public ReturnLikeCount GetLikeCount(string name)
+        {
+            ReturnLikeCount tmpCount = new ReturnLikeCount();
+            try
+            {           
+                tmpCount.count = myConnent.MySqlReadReturn("SELECT * FROM 图片表 WHERE ImageName ='" + name + "'", "ClickLikeCount");
+                return tmpCount;
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                tmpCount.count = "error";
+                return tmpCount;
             }
         }
     }

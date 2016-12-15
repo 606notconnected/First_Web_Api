@@ -207,4 +207,9 @@ namespace First_Web_Api.Models
 
     }
 
+    public class ReturnLikeCount
+    {
+        public string count { get; set; }
+    }
+
 }
