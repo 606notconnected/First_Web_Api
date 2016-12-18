@@ -41,9 +41,9 @@ namespace First_Web_Api.Controllers
                     foreach (string commentID in commentIDList)
                     {
                         CommentBackModel tmpComment = new CommentBackModel();
-                        tmpComment.account = myConnent.MySqlReadReturn("SELECT * FROM 评论表 WHERE CommentID ='" + commentID + "'", "Account");
-                        tmpComment.comment= myConnent.MySqlReadReturn("SELECT * FROM 评论表 WHERE CommentID ='" + commentID + "'", "Comment");
-                        tmpComment.dateTime = myConnent.MySqlReadReturn("SELECT * FROM 评论表 WHERE CommentID ='" + commentID + "'", "DateTime");
+                        tmpComment.account = myConnent.MySqlReadReturn("SELECT * FROM 评论表 WHERE CommentID ='" + commentID + "' AND (IsCheck = '1' OR IsCheck = '0')", "Account");
+                        tmpComment.comment= myConnent.MySqlReadReturn("SELECT * FROM 评论表 WHERE CommentID ='" + commentID + "' AND (IsCheck = '1' OR IsCheck = '0')", "Comment");
+                        tmpComment.dateTime = myConnent.MySqlReadReturn("SELECT * FROM 评论表 WHERE CommentID ='" + commentID + "' AND (IsCheck = '1' OR IsCheck = '0')", "DateTime");
                         tmpComment.imageName = imageName;
                         tmpComment.commentID = commentID;
                         tmpCommentList.Add(tmpComment);
@@ -78,7 +78,7 @@ namespace First_Web_Api.Controllers
             try
             {
                 string NewID = myConnent.NewID();
-                myConnent.MySqlWrite("INSERT INTO 评论表() VALUES('" + NewID + "','" + value.account + "','" + value.comment + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "','" + value.imageName + "')");
+                myConnent.MySqlWrite("INSERT INTO 评论表() VALUES('" + NewID + "','" + value.account + "','" + value.comment + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "','" + value.imageName + "','" + "0" + "')");
                 return "true";
             }
             catch (Exception e)
