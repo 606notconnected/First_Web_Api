@@ -42,9 +42,12 @@ namespace First_Web_Api.Controllers
 
         }
 
+
+
+
         // GET: api/ImageMessage/5
         /// <summary>
-        /// 返回图片名
+        /// 返回自己的图片名
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
@@ -53,7 +56,7 @@ namespace First_Web_Api.Controllers
             ReturnImageNameModel returnModel = new ReturnImageNameModel();
             try
             {
-                List<string> imageNameList = myConnent.MySqlRead("SELECT * FROM 图片表 WHERE Account ='" + account + "' AND IsDelete = '0' ORDER BY DateTime DESC", "imageName");
+                List<string> imageNameList = myConnent.MySqlRead("SELECT * FROM 图片表 WHERE Account ='" + account + "' AND IsDelete = '0'  ORDER BY DateTime DESC", "imageName");
                 if (imageNameList[0] != "error")
                 {
                     returnModel.result = "true";
@@ -75,6 +78,41 @@ namespace First_Web_Api.Controllers
             }
         }
 
+
+        // GET: api/ImageMessage/5
+        /// <summary>
+        /// 返回他人的图片名
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        public ReturnImageNameModel GetOthers(string othersAccount)
+        {
+            ReturnImageNameModel returnModel = new ReturnImageNameModel();
+            try
+            {
+                List<string> imageNameList = myConnent.MySqlRead("SELECT * FROM 图片表 WHERE Account ='" + othersAccount + "' AND IsDelete = '0' AND IsPublic = '1' AND IsCheck = '1' ORDER BY DateTime DESC", "imageName");
+                if (imageNameList[0] != "error")
+                {
+                    returnModel.result = "true";
+                    returnModel.imageName = imageNameList;
+                    return returnModel;
+                }
+                else
+                {
+                    returnModel.result = "error";
+                    return returnModel;
+                }
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                returnModel.result = "error";
+                return returnModel;
+            }
+        }
+
+
         // POST: api/ImageMessage
         /// <summary>
         /// 添加图片信息
@@ -85,7 +123,7 @@ namespace First_Web_Api.Controllers
         {
             try
             {
-                myConnent.MySqlWrite("UPDATE 图片表 SET DateTime = '" + value.dateTime + "', Longitude = '" + value.longitude + "', Introduce = '" + value.introduction + "', Latitude = '" + value.latitude + "', RoadID = '" + value.roadID + "' WHERE ImageName = '" + value.imageName + "'");
+                myConnent.MySqlWrite("UPDATE 图片表 SET DateTime = '" + value.dateTime + "', Longitude = '" + value.longitude + "', Introduce = '" + value.introduction + "', Latitude = '" + value.latitude + "', RoadID = '" + value.roadID + "', isPublic = '" + value.isPublic + "' WHERE ImageName = '" + value.imageName + "'");
                 return "true";
             }
             catch(Exception e)

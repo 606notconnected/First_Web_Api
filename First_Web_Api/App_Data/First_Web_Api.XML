@@ -499,7 +499,7 @@
             <summary>
             通过图片名返回赞数
             </summary>
-            <param name="name"></param>
+            <param name="name">图片名</param>
             <returns></returns>
         </member>
         <member name="M:First_Web_Api.Controllers.ClickLike_DeleteController.Get(System.String)">
@@ -587,7 +587,14 @@
         </member>
         <member name="M:First_Web_Api.Controllers.ImageMessageController.Get(System.String)">
             <summary>
-            返回图片名
+            返回自己的图片名
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:First_Web_Api.Controllers.ImageMessageController.GetOthers(System.String)">
+            <summary>
+            返回他人的图片名
             </summary>
             <param name="account"></param>
             <returns></returns>
@@ -729,11 +736,25 @@
             <param name="RoadID"></param>
             <returns></returns>
         </member>
+        <member name="M:First_Web_Api.Controllers.RoadController.GetOthersImage(System.String)">
+            <summary>
+            通过RoadID获取他人的图片名
+            </summary>
+            <param name="OtherRoadID"></param>
+            <returns></returns>
+        </member>
         <member name="M:First_Web_Api.Controllers.RoadController.Get(System.String)">
             <summary>
             通过帐号获取行程信息
             </summary>
             <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:First_Web_Api.Controllers.RoadController.GetFinalRoadName(System.String)">
+            <summary>
+            通过账号获取最近一条行程信息
+            </summary>
+            <param name="value"></param>
             <returns></returns>
         </member>
         <member name="M:First_Web_Api.Controllers.RoadController.Post(First_Web_Api.Models.Road)">
@@ -846,6 +867,11 @@
         <member name="P:First_Web_Api.Models.ImageModel.roadID">
             <summary>
             对应路径ID
+            </summary>
+        </member>
+        <member name="P:First_Web_Api.Models.ImageModel.isPublic">
+            <summary>
+            是否公开
             </summary>
         </member>
         <member name="T:First_Web_Api.Models.DeleteImageModel">

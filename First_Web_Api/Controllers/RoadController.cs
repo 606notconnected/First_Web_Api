@@ -26,7 +26,7 @@ namespace First_Web_Api.Controllers
             List<string> tmpList = new List<string>();
             try
             {
-                tmpList = myConnent.MySqlRead("SELECT * FROM 图片表 WHERE RoadID = '"+ RoadID + "'  ORDER BY DateTime DESC", "ImageName");
+                tmpList = myConnent.MySqlRead("SELECT * FROM 图片表 WHERE RoadID = '"+ RoadID + "'  AND IsDelete = '0' ORDER BY DateTime DESC", "ImageName");
                 Debug.WriteLine(tmpList);
                 tmpModel.returnImageName = tmpList;
                 return tmpModel;
@@ -39,6 +39,33 @@ namespace First_Web_Api.Controllers
                 return tmpModel;
             }
         }
+
+        /// <summary>
+        /// 通过RoadID获取他人的图片名
+        /// </summary>
+        /// <param name="OtherRoadID"></param>
+        /// <returns></returns>
+        public ReturnImageNameByRoadID GetOthersImage(string OtherRoadID)
+        {
+            ReturnImageNameByRoadID tmpModel = new ReturnImageNameByRoadID();
+            List<string> tmpList = new List<string>();
+            try
+            {
+                tmpList = myConnent.MySqlRead("SELECT * FROM 图片表 WHERE RoadID = '" + OtherRoadID + "' AND IsDelete = '0' AND IsPublic = '1' AND IsCheck = '1' ORDER BY DateTime DESC", "ImageName");
+                Debug.WriteLine(tmpList);
+                tmpModel.returnImageName = tmpList;
+                return tmpModel;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                tmpList.Add("error");
+                tmpModel.returnImageName = tmpList;
+                return tmpModel;
+            }
+        }
+
+
         /// <summary>
         /// 通过帐号获取行程信息
         /// </summary>

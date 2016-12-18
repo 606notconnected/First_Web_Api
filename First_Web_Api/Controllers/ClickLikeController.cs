@@ -42,21 +42,20 @@ namespace First_Web_Api.Controllers
         /// <summary>
         /// 通过图片名返回赞数
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">图片名</param>
         /// <returns></returns>
-        public ReturnLikeCount GetLikeCount(string name)
+        public string GetLikeCount(string name)
         {
-            ReturnLikeCount tmpCount = new ReturnLikeCount();
+           
             try
             {           
-                tmpCount.count = myConnent.MySqlReadReturn("SELECT * FROM 图片表 WHERE ImageName ='" + name + "'", "ClickLikeCount");
-                return tmpCount;
+                string count = myConnent.MySqlReadReturn("SELECT * FROM 图片表 WHERE ImageName ='" + name + "'", "ClickLikeCount");
+                return count;
             }
             catch(Exception e)
             {
                 Debug.WriteLine(e.ToString());
-                tmpCount.count = "error";
-                return tmpCount;
+                return "error";
             }
         }
     }

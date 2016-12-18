@@ -37,6 +37,11 @@ namespace First_Web_Api.Models
         /// 对应路径ID
         /// </summary>
         public string roadID { get; set; }
+
+        /// <summary>
+        /// 是否公开
+        /// </summary>
+        public string isPublic { get; set; }
     }
 
 

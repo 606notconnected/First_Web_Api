@@ -58,7 +58,7 @@ namespace First_Web_Api.Controllers
         /// </summary>
         /// <param name="imagename"></param>
         /// <returns></returns>
-        [System.Web.Mvc.Route("api/image/tmp")]
+        //[System.Web.Mvc.Route("api/image/tmp")]
         public HttpResponseMessage GetImage(string imagename)
         {
             try
