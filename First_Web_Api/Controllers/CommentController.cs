@@ -79,6 +79,7 @@ namespace First_Web_Api.Controllers
             {
                 string NewID = myConnent.NewID();
                 myConnent.MySqlWrite("INSERT INTO 评论表() VALUES('" + NewID + "','" + value.account + "','" + value.comment + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "','" + value.imageName + "','" + "0" + "')");
+                Debug.WriteLine(value.comment);
                 return "true";
             }
             catch (Exception e)

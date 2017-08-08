@@ -82,7 +82,7 @@ namespace First_Web_Api.Controllers
                 returnDictionary.Add("RoadID", null);
                 returnDictionary.Add("RoadName", null);
                 returnDictionary.Add("Introduction", null);
-                tmpList = myConnent.MySqlReadDictionary("SELECT * FROM 路径表 WHERE account ='" + account + "'", returnDictionary);
+                tmpList = myConnent.MySqlReadDictionary("SELECT * FROM 路径表 WHERE account ='" + account + "' ORDER BY EndTime DESC", returnDictionary);
                 tmpReturnRoad.returnMessage = tmpList;
                 return tmpReturnRoad;
             }

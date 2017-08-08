@@ -77,6 +77,7 @@ namespace First_Web_Api.Controllers
                 resp.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
                 return resp;
             }
+
             catch (Exception e)
             {
                 Debug.WriteLine(e.ToString());
@@ -131,7 +132,7 @@ namespace First_Web_Api.Controllers
                 imageName = fileName[0].Substring(fileName[0].Length - 45, 45);
                 Debug.WriteLine(imageName);
                 string account = dic["Account"];
-                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + account + "','" + DateTime.Now.ToString("yyyyMMddHHmmss")+ "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "0" + "')");
+                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + account + "','" + DateTime.Now.ToString("yyyyMMddHHmmss")+ "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "0" + "','" + "0" + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "')");
                // myConnent.MySqlHasRows("SELECT * FROM 路径表() ")
 
 

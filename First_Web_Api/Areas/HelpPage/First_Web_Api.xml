@@ -522,6 +522,19 @@
             </summary>
             <param name="value"></param>
         </member>
+        <member name="M:First_Web_Api.Controllers.FileController.GetImage">
+            <summary>
+            返回原图
+            </summary>
+            <param name="imagename"></param>
+            <returns></returns>
+        </member>
+        <member name="M:First_Web_Api.Controllers.FileController.Post">
+            <summary>
+            接收图片
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:First_Web_Api.Controllers.FollowerController.Get(System.String)">
             <summary>
             获取已关注的人的列表

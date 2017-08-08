@@ -91,7 +91,7 @@ namespace First_Web_Api.Controllers
                     Trace.WriteLine(file.Headers.ContentDisposition.FileName);//获取上传文件实际的文件名
                     Trace.WriteLine("Server file path: " + file.LocalFileName);//获取上传文件在服务上默认的文件名
                     await Task.Delay(1000);
-                    Save(file.LocalFileName, 77, 130);
+                    Save(file.LocalFileName, 77, 77);
                     fileName.Add(file.LocalFileName);
                 }//TODO:这样做直接就将文件存到了指定目录下，暂时不知道如何实现只接收文件数据流但并不保存至服务器的目录下，由开发自行指定如何存储，比如通过服务存到图片服务器
                 foreach (var key in provider.FormData.AllKeys)
@@ -101,7 +101,7 @@ namespace First_Web_Api.Controllers
                 imageName = fileName[0].Substring(fileName[0].Length - 45, 45);
                 Debug.WriteLine(imageName);
                 string account = dic["Account"];
-                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + "head" + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "0" + "')");
+                myConnent.MySqlWrite("INSERT INTO 图片表() VALUES('" + imageName + "','" + account + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "','" + "0" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "暂无" + "','" + "0" + "','" + "0" + "','" + "0" + "','" + DateTime.Now.ToString("yyyyMMddHHmmss") + "')");
                 // myConnent.MySqlHasRows("SELECT * FROM 路径表() ")
                 myConnent.MySqlWrite("UPDATE 账号表 SET HeadImageName = '" + imageName + "' WHERE Account = '" + account + "'");
 

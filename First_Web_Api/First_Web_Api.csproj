@@ -216,6 +216,7 @@
     <Compile Include="Controllers\ClickLikeController.cs" />
     <Compile Include="Controllers\ClickLike_DeleteController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\FollowerController.cs" />
     <Compile Include="Controllers\Follower_DeleteController.cs" />
     <Compile Include="Controllers\ForgetPasswordController.cs" />
@@ -370,6 +371,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="File\" />
     <Folder Include="Image\" />
   </ItemGroup>
   <ItemGroup>
